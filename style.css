@@ -1,0 +1,23 @@
+body {
+	font-family: Arial;
+	background-color: "white";
+}
+
+p{
+	align: "center";
+}
+/* Tela do jogo */
+#container {
+	width: 700px;
+    height: 450px;
+	margin: 40px auto auto auto;
+	text-align: center;
+	background: #111;
+	padding: 1px;
+}
+#container p {
+	font-size: 24px;
+}
+#container p span {
+	margin: 0 100px;
+}
