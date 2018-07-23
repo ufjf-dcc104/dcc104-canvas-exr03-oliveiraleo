@@ -3,13 +3,13 @@ body {
 	background-color: "white";
 }
 
-p{
+p {
 	align: "center";
 }
 /* Tela do jogo */
 #container {
 	width: 700px;
-    height: 450px;
+  height: 450px;
 	margin: 40px auto auto auto;
 	text-align: center;
 	background: #111;

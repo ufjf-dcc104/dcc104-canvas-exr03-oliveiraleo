@@ -1,0 +1,16 @@
+-> Commit 1
+
+- Commit inicial
+
+-> Commit 2
+
+- Adição da função de pause no jogo
+- Adição das mensagens no canvas
+
+- Ajuste na exibição do texto
+
+- Correção da identação do código
+- Correção do Readme
+
+- Remoção dos Window.alert
+- Remoção de código desnecessário
