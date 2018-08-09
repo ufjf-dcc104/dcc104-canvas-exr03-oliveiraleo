@@ -25,6 +25,12 @@ var batida = new Audio('audio/hit.wav');
 var obstaculos = new Array(10);
 var pontosBool = new Array(10);
 var pause = false;
+//Imagens do jogo
+var passaro = new Image();
+passaro.src = "img/bird.png";
+
+var fundo = new Image();
+fundo.src = "img/city.jpg";
 
 function aviso(){//espera o inicio do jogo
   //alert("Clique na tela para começar o jogo");
