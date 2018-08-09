@@ -19,13 +19,17 @@ function Sprite(coord, size, theta, url) {
 	this.omega = 0;
 
 	this.image = new Image();
+	this.image.src = url;
 
 	this.draw = function(ctx) {
 		ctx.save();
-            ctx.fillStyle = "black";
+            /*ctx.fillStyle = "black";
             ctx.fillRect(this.coord.x, this.coord.y,  this.size.h, this.size.w );
-            ctx.strokeStyle = "white";
+						*/
+            ctx.strokeStyle = "#00ff00";
             ctx.strokeRect(this.coord.x, this.coord.y, this.size.h, this.size.w);
+
+						ctx.drawImage(this.image, this.coord.x, this.coord.y, this.size.w, this.size.h);
 		ctx.restore();
 	}
 
@@ -96,9 +100,10 @@ function Obstaculo(coord, size, theta, url) {
 	//desenha os obstaculos
 	this.draw = function(ctx) {
 		ctx.save();
-            ctx.fillStyle = "#009b12";
+						ctx.lineWidth = 5;
+            ctx.fillStyle = "#000000";
             ctx.fillRect(this.coord.x, this.coord.y, this.size.h, this.size.w);
-            ctx.strokeStyle = "#00f2ff";
+            ctx.strokeStyle = "#00ff00";
             ctx.strokeRect(this.coord.x, this.coord.y, this.size.h, this.size.w);
 		ctx.restore();
 	}

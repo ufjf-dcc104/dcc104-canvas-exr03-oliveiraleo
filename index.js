@@ -8,7 +8,7 @@ const DEG4RAD = 180 / Math.PI;
 function Text(font, size, rgb) {
     this.font = font || "Courier";
     this.size = size || 20;
-    this.color = rgb || "#2aff00";
+    this.color = rgb || "#ffffff";
 
 	    this.raster = function(ctx, text, x, y) {
 	        ctx.font = "" + this.size + "px " + this.font;
@@ -30,7 +30,7 @@ var passaro = new Image();
 passaro.src = "img/bird.png";
 
 var fundo = new Image();
-fundo.src = "img/city.jpg";
+fundo.src = "img/city.png";
 
 function aviso(){//espera o inicio do jogo
   //alert("Clique na tela para começar o jogo");
@@ -80,7 +80,7 @@ function start() {
 		posObj2 = 295;
 	};
 
-	var bird = new Sprite(new Point(WIDTH/2, HEIGHT/2), new Size(25, 25) , 0);
+	var bird = new Sprite(new Point(WIDTH/2, HEIGHT/2), new Size(25, 25) , 0, "img/bird.png");
 
 	var obj1 = new Obstaculo(new Point(( WIDTH/2 )+ 15, 295), new Size(300, 50), 0);
 	var obj2 = new Obstaculo(new Point(bird.coord.x - bird.size.w/2, 150), new Size(20, 20));
@@ -94,6 +94,7 @@ function start() {
     if (inicio && !pause) {
 
   		ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      ctx.drawImage(fundo, 0, 0);
       //movimentacao do bird
   		bird.move(DT, G);
       //verifica se saiu da tela
