@@ -21,6 +21,15 @@ var audioPonto = new Audio('audio/point.wav');
 var musica = new Audio('audio/theme.mp3');
 var audioFim = new Audio('audio/gameover.mp3');
 var batida = new Audio('audio/hit.wav');
+var voa = new Audio();
+voa.src = 'audio/fly.wav';
+
+var bateAsa = function(){
+  voa.pause();
+  voa.load();
+  voa.play();
+}
+
 //variaveis globais
 var obstaculos = new Array(10);
 var pontosBool = new Array(10);
@@ -32,9 +41,11 @@ passaro.src = "img/bird.png";
 var fundo = new Image();
 fundo.src = "img/city.png";
 
-function aviso(){//espera o inicio do jogo
-  //alert("Clique na tela para começar o jogo");
-}
+var wall = new Image();
+wall.src = "img/wall.png";
+
+var wall2 = new Image();
+wall.src = "img/wall2.png";
 
 function start() {
     //musica
@@ -69,11 +80,10 @@ function start() {
 			posObj2 += posy;
 		}
 		pontosBool[i] = true;
-		obstaculos[i] = new Obstaculo(new Point(pos, posObj1), new Size(300, 60),0);
+		obstaculos[i] = new Obstaculo(new Point(pos, posObj1), new Size(300, 60),0, " ", wall);
 		i++;
 		pontosBool[i] = true;
-		obstaculos[i] = new Obstaculo(new Point(pos, posObj2), new Size(300, 60),0);
-
+		obstaculos[i] = new Obstaculo(new Point(pos, posObj2), new Size(300, 60),0, " ", wall);
 
 		pos += 200;
 		posObj1 = -135;
@@ -82,8 +92,10 @@ function start() {
 
 	var bird = new Sprite(new Point(WIDTH/2, HEIGHT/2), new Size(25, 25) , 0, "img/bird.png");
 
-	var obj1 = new Obstaculo(new Point(( WIDTH/2 )+ 15, 295), new Size(300, 50), 0);
-	var obj2 = new Obstaculo(new Point(bird.coord.x - bird.size.w/2, 150), new Size(20, 20));
+
+
+	//var obj1 = new Obstaculo(new Point(( WIDTH/2 )+ 15, 295), new Size(300, 50), 0, "img/wall.png", wall);
+	//var obj2 = new Obstaculo(new Point(bird.coord.x - bird.size.w/2, 150), new Size(20, 20), " ", wall2);
 	var passo = false;
 	var texto = new Text("Courier", 30, "white");
 	var pontos = new Text();
@@ -120,7 +132,6 @@ function start() {
 
   		if (start){
   			for (var i = 0; i < 10; i++) {
-
   				posObj1 = -135;
   				posObj2 = 295;
 
@@ -146,7 +157,6 @@ function start() {
   						}
   						break;
   					}
-
             //contabiliza os pontos
   					if (pontosBool[i]){
                           audioPonto.play();
@@ -154,9 +164,7 @@ function start() {
   						pontosBool[i] = false;
   						pontosBool[i+1] = false;
   					}
-
   				}
-
   				if (obstaculos[i].coord.x > -100){
   					obstaculos[i].move(DT, G);
   					obstaculos[i].draw(ctx);
@@ -185,7 +193,7 @@ function start() {
   			};
   		}
   		else{
-  			bird.vel.vy = -9;
+  			bird.vel.vy = -7.6 + DT;
   		}
       //mostra os pontos na tela
       if (!start){
@@ -207,12 +215,13 @@ function start() {
 	setInterval(loop, 1000/FPS);
 
 	var down = false;
-  //movimentacao
+  //controles
 	addEventListener("keydown", function(e){
 		if(e.keyCode == 32 && !down) {//Espaco
 			start = true;
 			bird.vel.vy = -10 * Math.sqrt(-G);
 			down = true;
+      bateAsa();
       e.preventDefault();
 		}
     if(e.keyCode == 80){//P - pause

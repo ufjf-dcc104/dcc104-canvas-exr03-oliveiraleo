@@ -86,7 +86,7 @@ function Sprite(coord, size, theta, url) {
 	}
 }
 //parametros dos obstaculos
-function Obstaculo(coord, size, theta, url) {
+function Obstaculo(coord, size, theta, url, img) {
 	this.size  = size  || new Size(50, 50);
 	this.coord = coord || new Point(0, 0);
 	this.theta = theta || 0;
@@ -95,16 +95,21 @@ function Obstaculo(coord, size, theta, url) {
 	this.omega = 0;
 	this.acel  = 0;
 
-	this.image = new Image();
+	//this.image = new Image();
+	this.image = img;
 	//this.image.src = url;
 	//desenha os obstaculos
 	this.draw = function(ctx) {
 		ctx.save();
-						ctx.lineWidth = 5;
+						/*ctx.lineWidth = 5;
             ctx.fillStyle = "#000000";
             ctx.fillRect(this.coord.x, this.coord.y, this.size.h, this.size.w);
+						*/
             ctx.strokeStyle = "#00ff00";
             ctx.strokeRect(this.coord.x, this.coord.y, this.size.h, this.size.w);
+
+						ctx.drawImage(this.image, this.coord.x, this.coord.y, this.size.h, this.size.w);
+						//ctx.drawImage(this.image, this.coord.x, this.coord.y, this.size.h, this.size.w);
 		ctx.restore();
 	}
 
